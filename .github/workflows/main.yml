@@ -41,3 +41,6 @@ jobs:
       
       - name: Run Unit Tests
         run: ng test --watch=false --browsers=FirefoxHeadless
+
+      - name: E2E test
+        run: ng e2e || true
