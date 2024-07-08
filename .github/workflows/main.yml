@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
 
     steps:
     - name: Checkout repository
@@ -26,6 +26,18 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+      
+    - name: Install mocha
+      run: npm install mocha --save-dev
+        
+    - name: Install Karma firefox
+      run: npm install karma-firefox-launcher --save-dev
+        
+    - name: Install Karma spec reporter
+      run: npm install karma-spec-reporter --save-dev
+        
+    - name: Install protractor
+      run: npm install protractor --save-dev
 
     - name: Run Unit test
       run: ng test
