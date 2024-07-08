@@ -8,36 +8,36 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-20.04
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
-        cache: 'npm'
-        cache-dependency-path: '**/package-lock.json'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
-    - name: Install Angular CLI
-      run: npm install -g @angular/cli@9
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@9
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Install Mocha
+        run: npm install mocha --save-dev
+        
+      - name: Install Karma Firefox Launcher
+        run: npm install karma-firefox-launcher --save-dev
+        
+      - name: Install Karma Spec Reporter
+        run: npm install karma-spec-reporter --save-dev
+        
+      - name: Install Protractor
+        run: npm install protractor --save-dev
       
-    - name: Install mocha
-      run: npm install mocha --save-dev
-        
-    - name: Install Karma firefox
-      run: npm install karma-firefox-launcher --save-dev
-        
-    - name: Install Karma spec reporter
-      run: npm install karma-spec-reporter --save-dev
-        
-    - name: Install protractor
-      run: npm install protractor --save-dev
-
-    - name: Run Unit test
-      run: ng test
+      - name: Run Unit Tests
+        run: ng test --watch=false --browsers=FirefoxHeadless
