@@ -8,9 +8,10 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => { // Add 'async' here
-    await page.navigateTo();
+  it('should display welcome message', () => {
+    page.navigateTo();
     const titleText = await page.getTitleText();
+    console.log('Title Text:', titleText);
     expect(titleText).toEqual('cs6261project4 app is running!');
   });
 
